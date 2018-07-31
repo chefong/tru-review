@@ -1,10 +1,11 @@
 import React from 'react';
-import './Title.css';
+import { NavLink } from 'react-router-dom';
+import './Welcome.css';
 
 let logo = require('../assets/imgs/tru review logo.png');
 let squirrel = require('../assets/imgs/tr squirrel.png');
 
-const Title = () => {
+const Welcome = () => {
   return (
     <div className="container-fluid">
       <div className="row">
@@ -12,13 +13,13 @@ const Title = () => {
           <img src={ logo } alt="Tru Review logo" id="tr-logo"/>
         </div>
         <div className="col-sm-6 get-started-container">
-          <p id="subtitle">...because your reviews are what truly matters the most.</p>
+          <p id="subtitle">...because your reviews truly mean everything.</p>
           <div className="squirrel-container">
             <img src={ squirrel } alt="Tru Review squirrel" id="squirrel"/>
           </div>
           <form action="" className="form-container">
             <div className="button-container">
-              <button className="btn btn-primary" id="get-started-button">Get Started</button>
+              <button className="btn btn-primary" id="get-started-button"><NavLink to="/home" id="getting-started-link">Get Started</NavLink></button>
             </div>
           </form>
         </div>
@@ -27,4 +28,4 @@ const Title = () => {
   )
 }
 
-export default Title;
+export default Welcome;

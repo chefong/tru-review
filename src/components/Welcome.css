@@ -28,7 +28,6 @@
 
 #get-started-button {
   background-color: #FFFFFF;
-  color: #9a3838;
   font-family: 'Cairo', sans-serif;
   font-size: 2.5vh;
   border-color: #FFFFFF;
@@ -36,6 +35,7 @@
 
 #get-started-button:hover {
   background-color: lightgray;
+  border-color: lightgray;
 }
 
 #squirrel {
@@ -45,4 +45,9 @@
 .squirrel-container {
   text-align: center;
   margin-top: 10%;
+}
+
+#getting-started-link {
+  text-decoration: none;
+  color: #9a3838;
 }
