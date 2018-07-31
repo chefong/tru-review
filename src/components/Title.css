@@ -1,0 +1,48 @@
+#tr-logo {
+  width: 80%;
+  margin-top: 16vh;
+}
+
+.logo-container {
+  height: 100vh;
+  text-align: center;
+}
+
+.get-started-container {
+  background-color: #9a3838;
+  height: 100vh;
+}
+
+#subtitle {
+  font-family: 'Cairo', sans-serif;
+  color: #FFFFFF;
+  font-size: 3.5vh;
+  text-align: center;
+  margin-top: 30vh;
+  padding: 0 10%;
+}
+
+.button-container {
+  text-align: center;
+}
+
+#get-started-button {
+  background-color: #FFFFFF;
+  color: #9a3838;
+  font-family: 'Cairo', sans-serif;
+  font-size: 2.5vh;
+  border-color: #FFFFFF;
+}
+
+#get-started-button:hover {
+  background-color: lightgray;
+}
+
+#squirrel {
+  width: 15vh;
+}
+
+.squirrel-container {
+  text-align: center;
+  margin-top: 10%;
+}
