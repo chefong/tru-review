@@ -1,0 +1,17 @@
+.home-container {
+  background-color: #9a3838;
+  height: 100vh;
+}
+
+#tr-white {
+  width: 7vh;
+  margin-top: 2vh;
+}
+
+#review-subtitle {
+  color: #FFFFFF;
+  font-family: 'Cairo', sans-serif;
+  text-align: center;
+  font-size: 3vh;
+  margin-top: 4vh;
+}

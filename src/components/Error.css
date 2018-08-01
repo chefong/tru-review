@@ -1,0 +1,13 @@
+.error-container {
+  text-align: center;
+  margin-top: 15vw;
+}
+
+#error-message {
+  font-family: 'Cairo', sans-serif;
+}
+
+#thinking-emoji {
+  margin-top: 2vh;
+  width: 8vh;
+}
