@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Welcome.css';
 
-let logo = require('../assets/imgs/tru review logo.png');
+let logo = require('../assets/imgs/tr-logo.png');
 let squirrel = require('../assets/imgs/tr squirrel.png');
 
 const Welcome = () => {
