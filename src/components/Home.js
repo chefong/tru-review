@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import  { NavLink } from 'react-router-dom';
+import  { NavLink, Redirect } from 'react-router-dom';
 import ReactStars from 'react-stars';
+import Results from './Results';
 import './Home.css';
 
 let trWhiteBlock = require('../assets/imgs/tr white block.png');
@@ -13,7 +14,9 @@ class Home extends Component {
 
   state = {
     stars: 0,
-    data: undefined
+    review: '',
+    data: undefined,
+    rating: undefined
   }
 
   changeStars = stars => {
@@ -21,18 +24,16 @@ class Home extends Component {
     this.setState({stars});
   }
 
-  normalize = () => {
-
-  }
-
   handleSubmit = async e => {
     e.preventDefault();
-    const userReview = e.target.elements.userReview.value;
-    const userStars = this.state.stars;
+    const review = e.target.elements.userReview.value;
+    const stars = this.state.stars;
+
+    this.setState({review});
 
     let auth = base64.encode(username + ":" + password);
 
-    await fetch(`https://cors-anywhere.herokuapp.com/https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-07-10&text=${userReview}&features=sentiment&fallback_to_raw=true&relations.model=en-news&sentiment.document=true`, {
+    await fetch(`https://cors-anywhere.herokuapp.com/https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-07-10&text=${review}&features=sentiment&fallback_to_raw=true&relations.model=en-news&sentiment.document=true`, {
       headers: {
         Accept: "application/json",
         Authorization: "Basic " + auth
@@ -41,8 +42,13 @@ class Home extends Component {
     .then(res => res.json())
     .then(data => this.setState({data}));
 
-    console.log(this.state.data);
-    console.log(this.state.stars);
+    // console.log(this.state.data);
+    // console.log(this.state.stars);
+
+    let rating = this.state.data.sentiment.document.score;
+    this.setState({rating});
+
+    this.props.afterSubmit(review, stars, rating);
   }
 
   render() {
