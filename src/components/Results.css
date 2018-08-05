@@ -1,0 +1,41 @@
+.results-container {
+  background-color: #9a3838;
+  height: 100vh;
+}
+
+.info-container {
+  margin-top: 4%;
+  height: 40vh;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+}
+
+.score-container {
+  margin-top: 4%;
+  text-align: center;
+}
+
+#tr-score {
+  font-family: 'Cairo', sans-serif;
+  color: #9a3838;
+  font-size: 250%;
+  text-align: center;
+}
+
+#score {
+  font-family: 'Cairo', sans-serif;
+  color: #9a3838;
+  font-size: 150%;
+}
+
+#back-button {
+  margin-top: 4vh;
+  font-family: 'Cairo', sans-serif;
+  color: #9a3838;
+  background-color: #FFFFFF;
+  border: none;
+}
+
+#back-button:hover {
+  background-color: lightgray;
+}

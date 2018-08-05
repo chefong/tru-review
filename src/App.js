@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import createHistory from "history/createBrowserHistory"
 import Welcome from './components/Welcome';
 import Home from './components/Home';
 import Error from './components/Error';
 import Results from './components/Results';
 import './App.css';
-
-const history = createHistory();
 
 class App extends Component {
 
@@ -28,6 +25,18 @@ class App extends Component {
     });
   }
 
+  resetSubmit = () => {
+    this.setState({
+      submitted: false
+    });
+  }
+
+  updateRating = rating => {
+    console.log("Update rating in App.js");
+    this.setState({rating});
+    console.log(this.state.rating);
+  }
+
   render() {
     return (
       <div className="App">
@@ -42,11 +51,7 @@ class App extends Component {
               )
             )}/>
             <Route path="/results" render={() => (
-              this.state.rating ? (
-                <Results review={ this.state.review } stars={ this.state.stars } rating={ this.state.rating }/>
-              ) : (
-                <Redirect to="/home"/>
-              )
+              <Results review={ this.state.review } stars={ this.state.stars } rating={ this.state.rating } reset={ this.resetSubmit } update={ this.updateRating }/>
             )}/>
             <Route component ={ Error }/>
           </Switch>

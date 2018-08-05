@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import  { NavLink, Redirect } from 'react-router-dom';
+import  { NavLink } from 'react-router-dom';
 import ReactStars from 'react-stars';
-import Results from './Results';
 import './Home.css';
 
 let trWhiteBlock = require('../assets/imgs/tr white block.png');
@@ -20,7 +19,6 @@ class Home extends Component {
   }
 
   changeStars = stars => {
-    // console.log(stars);
     this.setState({stars});
   }
 
@@ -32,7 +30,6 @@ class Home extends Component {
     this.setState({review});
 
     let auth = base64.encode(username + ":" + password);
-
     await fetch(`https://cors-anywhere.herokuapp.com/https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-07-10&text=${review}&features=sentiment&fallback_to_raw=true&relations.model=en-news&sentiment.document=true`, {
       headers: {
         Accept: "application/json",
@@ -41,9 +38,6 @@ class Home extends Component {
     })
     .then(res => res.json())
     .then(data => this.setState({data}));
-
-    // console.log(this.state.data);
-    // console.log(this.state.stars);
 
     let rating = this.state.data.sentiment.document.score;
     this.setState({rating});
