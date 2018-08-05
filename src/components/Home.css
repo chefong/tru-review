@@ -61,6 +61,7 @@
   font-family: 'Cairo', sans-serif;
   color: #9a3838;
   background-color: #FFFFFF;
+  border: none;
 }
 
 #submit-button:hover {

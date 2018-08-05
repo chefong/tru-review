@@ -26,7 +26,6 @@ class App extends Component {
       stars,
       rating
     });
-    
   }
 
   render() {
@@ -42,7 +41,13 @@ class App extends Component {
                 <Home afterSubmit={ this.afterSubmit }/>
               )
             )}/>
-            <Route path="/results" render={() => <Results review={ this.state.review } stars={ this.state.stars } rating={ this.state.rating }/>}/>
+            <Route path="/results" render={() => (
+              this.state.rating ? (
+                <Results review={ this.state.review } stars={ this.state.stars } rating={ this.state.rating }/>
+              ) : (
+                <Redirect to="/home"/>
+              )
+            )}/>
             <Route component ={ Error }/>
           </Switch>
         </BrowserRouter>

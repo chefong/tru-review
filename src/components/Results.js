@@ -3,28 +3,15 @@ import './Results.css';
 
 class Results extends Component {
 
-  state = {
-    review: '',
-    stars: 0,
-    rating: undefined
-  }
-
-  componentDidMount = () => {
-    this.setState({
-      review: this.props.review,
-      stars: this.props.stars,
-      rating: this.props.rating
-    })
-  }
-
-  normalize = () => {
-
+  normalize(rating) {
+    console.log(rating)
+    return ((rating + 1) / 2) * 5;
   }
 
   render() {
     return (
       <div className="container-fluid">
-        <p>{ this.state.rating }</p>
+        <p>{ this.normalize(this.props.rating) }</p>
       </div>
     )
   }
