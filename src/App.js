@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   afterSubmit = (review, stars, rating) => {
-    console.log("calling handleSubmit from App.js");
     this.setState({
       submitted: true,
       review,
@@ -32,9 +31,7 @@ class App extends Component {
   }
 
   updateRating = rating => {
-    console.log("Update rating in App.js");
     this.setState({rating});
-    console.log(this.state.rating);
   }
 
   render() {
@@ -51,7 +48,11 @@ class App extends Component {
               )
             )}/>
             <Route path="/results" render={() => (
-              <Results review={ this.state.review } stars={ this.state.stars } rating={ this.state.rating } reset={ this.resetSubmit } update={ this.updateRating }/>
+              this.state.submitted ? (
+                <Results review={ this.state.review } stars={ this.state.stars } rating={ this.state.rating } reset={ this.resetSubmit } update={ this.updateRating }/>
+              ) : (
+                <Redirect to="/home"/>
+              )
             )}/>
             <Route component ={ Error }/>
           </Switch>

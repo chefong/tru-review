@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  { NavLink } from 'react-router-dom';
+import  { NavLink, withRouter } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import './Home.css';
 
@@ -18,6 +18,7 @@ class Home extends Component {
     data: undefined,
     rating: undefined,
     short: false,
+    error: false,
     loading: false
   }
 
@@ -27,6 +28,9 @@ class Home extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+
+    this.props.history.push('/home');
+
     const review = e.target.elements.userReview.value;
     if (review.split(' ').length < 15) {
       this.setState({short: true});
@@ -44,11 +48,20 @@ class Home extends Component {
         Authorization: "Basic " + auth
       }
     })
-    .then(res => 
+    .then(res =>
       res.json(),
-      this.setState({loading: true})
+      this.setState({loading: true}),
     )
-    .then(data => this.setState({data}));
+    .then(data => this.setState({data}))
+    .catch(error => console.log(error.message));
+
+    if (!this.state.data.sentiment) {
+      this.setState({
+        error: true,
+        loading: false
+      });
+      return;
+    }
 
     let rating = this.state.data.sentiment.document.score;
     this.setState({rating});
@@ -67,7 +80,7 @@ class Home extends Component {
               <textarea className="form-control" id="review-content" name="userReview" placeholder="Your (amazing) review..." rows="8"></textarea>
             </div>
             <div className="row justify-content-center">
-              { this.state.short && <div class="alert alert-danger" id="error-message" role="alert">Make sure your review is at least 15 words long.</div> }
+              { this.state.short && <div className="alert alert-danger" id="short-message" role="alert">Make sure your review is at least 15 words long.</div> }
             </div>
             <p className="review-subtitle-2">What would you rate your review?</p>
             <div className="row">
@@ -84,6 +97,9 @@ class Home extends Component {
             <div className="submit-container">
               <button className="btn btn-secondary" id="submit-button">Submit</button>
             </div>
+            <div className="row justify-content-center">
+              { this.state.error && <div className="alert alert-danger" id="error-message" role="alert">Sorry, your text couldn't be processed.</div> }
+            </div>
             <div className="loading-container">
               { this.state.loading && <img src={spinner} alt="Loading"/> }
             </div>
@@ -94,4 +110,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

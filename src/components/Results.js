@@ -33,10 +33,10 @@ class Results extends Component {
     let truRating = this.state.rating;
     console.log(truRating);
 
-    if (Math.abs(userRating - truRating) <= 0.5) {
-      return "Nice! We pretty much agree with your rating too.";
+    if (Math.abs(userRating - truRating) < 1) {
+      return "Nice! We're pretty much in the same range as you too!";
     }
-    else if (userRating - truRating > 0.5) {
+    else if (userRating - truRating >= 1) {
       return "You seem to be a bit too generous. Try reflecting more in your words or consider lowering that rating...";
     }
     else {

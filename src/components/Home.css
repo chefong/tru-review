@@ -29,7 +29,7 @@
   margin-top: 2vh;
 }
 
-#error-message {
+#short-message {
   margin-top: 1vh;
 }
 
@@ -75,4 +75,8 @@
 .loading-container {
   margin-top: 4vh;
   text-align: center;
+}
+
+#error-message {
+  margin-top: 4vh;
 }
