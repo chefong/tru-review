@@ -42,7 +42,7 @@ class Home extends Component {
     this.setState()
 
     let auth = base64.encode(username + ":" + password);
-    await fetch(`https://cors-anywhere.herokuapp.com/https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-07-10&text=${review}&features=sentiment&fallback_to_raw=true&relations.model=en-news&sentiment.document=true`, {
+    await fetch(`https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-07-10&text=${review}&features=sentiment&fallback_to_raw=true&relations.model=en-news&sentiment.document=true`, {
       headers: {
         Accept: "application/json",
         Authorization: "Basic " + auth
