@@ -5,6 +5,7 @@ import './Home.css';
 
 let trWhiteBlock = require('../assets/imgs/tr white block.png');
 let base64 = require('base-64');
+let spinner = require('../assets/imgs/tail-spin.svg');
 
 const username = process.env.REACT_APP_IBM_USERNAME;
 const password = process.env.REACT_APP_IBM_PASSWORD;
@@ -15,7 +16,9 @@ class Home extends Component {
     stars: 0,
     review: '',
     data: undefined,
-    rating: undefined
+    rating: undefined,
+    short: false,
+    loading: false
   }
 
   changeStars = stars => {
@@ -25,9 +28,14 @@ class Home extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const review = e.target.elements.userReview.value;
+    if (review.split(' ').length < 15) {
+      this.setState({short: true});
+      return;
+    }
     const stars = this.state.stars;
 
     this.setState({review});
+    this.setState()
 
     let auth = base64.encode(username + ":" + password);
     await fetch(`https://cors-anywhere.herokuapp.com/https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-07-10&text=${review}&features=sentiment&fallback_to_raw=true&relations.model=en-news&sentiment.document=true`, {
@@ -36,7 +44,10 @@ class Home extends Component {
         Authorization: "Basic " + auth
       }
     })
-    .then(res => res.json())
+    .then(res => 
+      res.json(),
+      this.setState({loading: true})
+    )
     .then(data => this.setState({data}));
 
     let rating = this.state.data.sentiment.document.score;
@@ -55,6 +66,9 @@ class Home extends Component {
             <div className="row justify-content-center">
               <textarea className="form-control" id="review-content" name="userReview" placeholder="Your (amazing) review..." rows="8"></textarea>
             </div>
+            <div className="row justify-content-center">
+              { this.state.short && <div class="alert alert-danger" id="error-message" role="alert">Make sure your review is at least 15 words long.</div> }
+            </div>
             <p className="review-subtitle-2">What would you rate your review?</p>
             <div className="row">
               <div className="stars-container">
@@ -69,6 +83,9 @@ class Home extends Component {
             </div>
             <div className="submit-container">
               <button className="btn btn-secondary" id="submit-button">Submit</button>
+            </div>
+            <div className="loading-container">
+              { this.state.loading && <img src={spinner} alt="Loading"/> }
             </div>
           </div>
         </form>

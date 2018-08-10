@@ -29,12 +29,16 @@
   margin-top: 2vh;
 }
 
+#error-message {
+  margin-top: 1vh;
+}
+
 .review-subtitle-2 {
   color: #FFFFFF;
   font-family: 'Cairo', sans-serif;
   font-size: 3vh;
   text-align: center;
-  margin-top: 4vh;
+  margin-top: 1vh;
 }
 
 #review-content {
@@ -66,4 +70,9 @@
 
 #submit-button:hover {
   background-color: lightgray;
+}
+
+.loading-container {
+  margin-top: 4vh;
+  text-align: center;
 }
