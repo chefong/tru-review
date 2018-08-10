@@ -55,13 +55,13 @@ class Home extends Component {
     .then(data => this.setState({data}))
     .catch(error => console.log(error.message));
 
-    if (!this.state.data.sentiment) {
-      this.setState({
-        error: true,
-        loading: false
-      });
-      return;
-    }
+    // if (!this.state.data.sentiment) {
+    //   this.setState({
+    //     error: true,
+    //     loading: false
+    //   });
+    //   return;
+    // }
 
     let rating = this.state.data.sentiment.document.score;
     this.setState({rating});
